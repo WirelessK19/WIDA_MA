@@ -13,14 +13,15 @@ require(data.table)
 
 ### Load Data
 
-WIDA_MEPA_ACCESS_Data_LONG <- read.spss("Data/Base_Files/MEPA_ACCESS Long with Access Scaled scores_5.5.2014.sav", to.data.frame=TRUE)
+WIDA_MEPA_ACCESS_Data_LONG <- read.spss("SGP 2016 Wide 6.8.2016.sav", to.data.frame=TRUE)
 
 
 ### clean up data
 
+
 names(WIDA_MEPA_ACCESS_Data_LONG) <- toupper(names(WIDA_MEPA_ACCESS_Data_LONG))
 
-names(WIDA_MEPA_ACCESS_Data_LONG) <- c("YEAR", "ID", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "DOB", "GRADE", "GRADESPAN", "SS_LEVEL", "SCALE_SCORE")
+names(WIDA_MEPA_ACCESS_Data_LONG) <- c("ID", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "DOB", "GRADE", "SS_LEVEL", "SCALE_SCORE", "GRADESPAN", "YEAR")
 
 WIDA_MEPA_ACCESS_Data_LONG <- subset(WIDA_MEPA_ACCESS_Data_LONG, select=c("YEAR", "ID", "LAST_NAME", "FIRST_NAME", "GRADE", "SCALE_SCORE"))
 WIDA_MEPA_ACCESS_Data_LONG$YEAR <- as.character(WIDA_MEPA_ACCESS_Data_LONG$YEAR)
@@ -42,6 +43,7 @@ WIDA_MEPA_ACCESS_Data_LONG$GRADE <- as.character(WIDA_MEPA_ACCESS_Data_LONG$GRAD
 
 WIDA_MEPA_ACCESS_Data_LONG$VALID_CASE <- "VALID_CASE"
 WIDA_MEPA_ACCESS_Data_LONG$CONTENT_AREA <- "READING"
+WIDA_MEPA_ACCESS_Data_LONG$YEAR <- "2016"
 
 ### Reorder 
 
@@ -51,4 +53,5 @@ setcolorder(WIDA_MEPA_ACCESS_Data_LONG, c(7,8,1,2,3,4,5,6))
 
 ### Save data
 
-save(WIDA_MEPA_ACCESS_Data_LONG, file="Data/WIDA_MEPA_ACCESS_Data_LONG.Rdata")
+WIDA_MA_Data_LONG_2016 <- WIDA_MEPA_ACCESS_Data_LONG
+save(WIDA_MA_Data_LONG_2016, file="Data/WIDA_MA_Data_LONG_2016.Rdata")
